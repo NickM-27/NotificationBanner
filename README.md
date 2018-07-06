@@ -19,7 +19,7 @@ On your module's `build.gradle` file add this statement to the `dependencies` se
 
 ```groovy
 dependencies {
-  implementation 'com.nick.mowen.notificationbanner:notificationbanner:1.0.0'
+  implementation 'com.nick.mowen.notificationbanner:notificationbanner:1.0.1'
 }
 ```
 
@@ -71,7 +71,7 @@ banner.notify()
 ```kotlin
 //Use the click listener to react to when the user clicks on the banner
 banner.listener = object : BannerClickListener {
-    override fun onClick(view: View?, info: BannerInfo) {
+    override fun onClick(view: View, info: BannerInfo) {
                 
     }
 }
@@ -96,7 +96,7 @@ banner.notify(NewBannerInfo(string, bitmap, string, string))
 Then in the onClick cast the info to your class
 ```kotlin
 banner.listener = object : BannerClickListener {
-    override fun onClick(view: View?, info: BannerInfo) {
+    override fun onClick(view: View, info: BannerInfo) {
         val newInfo = info as NewBannerInfo
         //Do stuff with newInfo.threadId
     }

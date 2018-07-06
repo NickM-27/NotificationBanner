@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bindViews()
         banner.listener = object : BannerClickListener {
-            override fun onClick(view: View?, info: BannerInfo) {
+            override fun onClick(view: View, info: BannerInfo) {
                 Toast.makeText(this@MainActivity, "${info.name} and ${info.text} clicked", Toast.LENGTH_SHORT).show()
             }
         }

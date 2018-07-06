@@ -5,5 +5,5 @@ import com.nick.mowen.notificationbanner.data.BannerInfo
 
 interface BannerClickListener {
 
-    fun onClick(view: View?, info: BannerInfo)
+    fun onClick(view: View, info: BannerInfo)
 }
