@@ -1,4 +1,4 @@
-package com.nick.mowen.library.view
+package com.nick.mowen.notificationbanner.view
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -15,9 +15,9 @@ import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.card.MaterialCardView
-import com.nick.mowen.library.R
-import com.nick.mowen.library.data.BannerInfo
-import com.nick.mowen.library.listener.BannerClickListener
+import com.nick.mowen.notificationbanner.R
+import com.nick.mowen.notificationbanner.data.BannerInfo
+import com.nick.mowen.notificationbanner.listener.BannerClickListener
 
 class NotificationBanner : MaterialCardView {
 
@@ -58,7 +58,7 @@ class NotificationBanner : MaterialCardView {
                     visibility = View.INVISIBLE
                 }
 
-                listener?.onClick(info)
+                listener?.onClick(view, info)
             }
 
             override fun onFlingUp(view: View?) {

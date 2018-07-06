@@ -7,10 +7,10 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.nick.mowen.library.data.BannerInfo
-import com.nick.mowen.library.listener.BannerClickListener
-import com.nick.mowen.library.view.NotificationBanner
+import com.nick.mowen.notificationbanner.data.BannerInfo
+import com.nick.mowen.notificationbanner.listener.BannerClickListener
 import com.nick.mowen.notificationbanner.sample.R
+import com.nick.mowen.notificationbanner.view.NotificationBanner
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bindViews()
         banner.listener = object : BannerClickListener {
-            override fun onClick(info: BannerInfo) {
+            override fun onClick(view: View?, info: BannerInfo) {
                 Toast.makeText(this@MainActivity, "${info.name} and ${info.text} clicked", Toast.LENGTH_SHORT).show()
             }
         }
