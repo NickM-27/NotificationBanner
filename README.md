@@ -71,7 +71,7 @@ banner.notify()
 ```kotlin
 //Use the click listener to react to when the user clicks on the banner
 banner.listener = object : BannerClickListener {
-    override fun onClick(info: BannerInfo) {
+    override fun onClick(view: View?, info: BannerInfo) {
                 
     }
 }
@@ -81,7 +81,26 @@ banner.listener = object : BannerClickListener {
 
 You can set the banner to not hide when being clicked to enable the ability to show custom animations
 ```kotlin
-banner.hideOnClick = false
+banner.hideAfterClick = false
+```
+
+If you need more information when the banner is clicked, you can create your own BannerInfo
+
+```kotlin
+class NewBannerInfo (threadId: String, bitmap: Bitmap, title: String, text: String) : BannerInfo(bitmap, title, text)
+```
+Then simply submit that new class on notify
+```kotlin
+banner.notify(NewBannerInfo(string, bitmap, string, string)
+```
+Then in the onclick cast the info to your class
+```kotlin
+banner.listener = object : BannerClickListener {
+    override fun onClick(view: View?, info: BannerInfo) {
+        val newInfo = info as NewBannerInfo
+        //Do stuff with newInfo.threadId
+    }
+}
 ```
 
 Applications using NotificationBanner
