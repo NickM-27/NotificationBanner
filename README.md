@@ -91,9 +91,9 @@ class NewBannerInfo (threadId: String, bitmap: Bitmap, title: String, text: Stri
 ```
 Then simply submit that new class on notify
 ```kotlin
-banner.notify(NewBannerInfo(string, bitmap, string, string)
+banner.notify(NewBannerInfo(string, bitmap, string, string))
 ```
-Then in the onclick cast the info to your class
+Then in the onClick cast the info to your class
 ```kotlin
 banner.listener = object : BannerClickListener {
     override fun onClick(view: View?, info: BannerInfo) {
