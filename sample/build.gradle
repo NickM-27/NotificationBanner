@@ -26,7 +26,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //Library Module
-    implementation project(':library')
+    implementation project(':notificationbanner')
 
     //Testing Libraries
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit:1.2.31'
