@@ -57,7 +57,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/entry_text" />
 
-    <com.nick.mowen.library.view.NotificationBanner
+    <com.nick.mowen.notificationbanner.view.NotificationBanner
         android:id="@+id/entry_banner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

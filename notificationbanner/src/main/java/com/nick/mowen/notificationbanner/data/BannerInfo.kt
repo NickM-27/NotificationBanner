@@ -1,4 +1,4 @@
-package com.nick.mowen.library.data
+package com.nick.mowen.notificationbanner.data
 
 import android.graphics.Bitmap
 import androidx.annotation.Keep

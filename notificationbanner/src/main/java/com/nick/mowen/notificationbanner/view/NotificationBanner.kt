@@ -1,4 +1,4 @@
-package com.nick.mowen.library.view
+package com.nick.mowen.notificationbanner.view
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -15,9 +15,10 @@ import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.card.MaterialCardView
-import com.nick.mowen.library.R
-import com.nick.mowen.library.data.BannerInfo
-import com.nick.mowen.library.listener.BannerClickListener
+import com.nick.mowen.notificationbanner.R
+import com.nick.mowen.notificationbanner.data.BannerInfo
+import com.nick.mowen.notificationbanner.extension.notifyVibrate
+import com.nick.mowen.notificationbanner.listener.BannerClickListener
 
 class NotificationBanner : MaterialCardView {
 
@@ -29,6 +30,7 @@ class NotificationBanner : MaterialCardView {
     private val fade = ObjectAnimator.ofFloat(this, "alpha", 0f, 1f).setDuration(300)
     lateinit var info: BannerInfo
     var listener: BannerClickListener? = null
+    var vibrate = true
     var hideAfterClick = true
 
     constructor(context: Context) : super(context) {
@@ -52,16 +54,16 @@ class NotificationBanner : MaterialCardView {
         text = view.findViewById(R.id.banner_text)
         setOnTouchListener(BannerGestureListener(context, this, object : BannerGestureListener.ClickListener {
 
-            override fun onClick(view: View?) {
+            override fun onClick(view: View) {
                 if (hideAfterClick) {
                     handler.removeCallbacks(hideAction)
                     visibility = View.INVISIBLE
                 }
 
-                listener?.onClick(info)
+                listener?.onClick(view, info)
             }
 
-            override fun onFlingUp(view: View?) {
+            override fun onFlingUp(view: View) {
                 handler.removeCallbacks(hideAction)
                 hideAction.run()
             }
@@ -69,6 +71,9 @@ class NotificationBanner : MaterialCardView {
     }
 
     private fun show() {
+        if (vibrate)
+        context.notifyVibrate()
+
         handler.removeCallbacks(hideAction)
         visibility = View.VISIBLE
         animatorSet.playTogether(translate, fade)
@@ -104,7 +109,7 @@ class NotificationBanner : MaterialCardView {
 
     companion object {
 
-        class BannerGestureListener(context: Context, view: View?, clickListener: ClickListener?) : View.OnTouchListener {
+        class BannerGestureListener(context: Context, view: View, clickListener: ClickListener) : View.OnTouchListener {
 
             private val gestureDetector: GestureDetector
 
@@ -112,14 +117,12 @@ class NotificationBanner : MaterialCardView {
                 gestureDetector = GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
 
                     override fun onSingleTapUp(e: MotionEvent): Boolean {
-                        if (view != null && clickListener != null)
-                            clickListener.onClick(view)
-
+                        clickListener.onClick(view)
                         return true
                     }
 
                     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-                        return if (clickListener != null && velocityY < -100) {
+                        return if (velocityY < -100) {
                             clickListener.onFlingUp(view)
                             true
                         } else
@@ -136,8 +139,8 @@ class NotificationBanner : MaterialCardView {
 
             interface ClickListener {
 
-                fun onClick(view: View?)
-                fun onFlingUp(view: View?)
+                fun onClick(view: View)
+                fun onFlingUp(view: View)
             }
         }
     }
