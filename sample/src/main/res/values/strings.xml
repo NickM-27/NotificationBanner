@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">NotificationBanner</string>
+    <string name="hint_name">Type sample name here</string>
+    <string name="hint_text">Type sample text here</string>
+    <string name="action_notify">Sample Notification Banner</string>
+</resources>

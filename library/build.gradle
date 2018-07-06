@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //Testing libraries
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit:1.2.31'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+}
+
+ext {
+    bintrayRepo = "NotificationBanner"
+    bintrayName = "com.nick.mowen.notificationbanner"
+    libraryName = 'notificationbanner'
+
+    publishedGroupId = 'com.nick.mowen.notificationbanner'
+    artifact = 'notificationbanner'
+    libraryVersion = '1.0.0'
+    libraryDescription = 'A convenient view that shows a notification banner'
+    siteUrl = 'https://github.com/NickM-27/NotificationBanner'
+    gitUrl = 'https://github.com/NickM-27/NotificationBanner.git'
+    developerId = 'nick.mowen'
+    developerName = 'Nick Mowen'
+    developerEmail = 'nick@nicknackdevelopment.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/license/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+    apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+}
