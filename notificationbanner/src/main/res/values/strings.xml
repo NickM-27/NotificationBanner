@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NotificationBanner</string>
+    <string name="banner_description">Avatar Image Inside The Notification Banner</string>
 </resources>
