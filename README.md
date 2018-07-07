@@ -19,7 +19,7 @@ On your module's `build.gradle` file add this statement to the `dependencies` se
 
 ```groovy
 dependencies {
-  implementation 'com.nick.mowen.notificationbanner:notificationbanner:1.0.1'
+    implementation 'com.nick.mowen.notificationbanner:notificationbanner:1.0.2'
 }
 ```
 
@@ -27,8 +27,8 @@ Also make sure that the `repositories` section includes both jcenter and `maven`
 
 ```groovy
 repositories {
-  jcenter()
-  google()
+    jcenter()
+    google()
 }
 ```
 

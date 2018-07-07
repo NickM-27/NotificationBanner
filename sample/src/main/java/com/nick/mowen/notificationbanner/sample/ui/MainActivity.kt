@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "${info.name} and ${info.text} clicked", Toast.LENGTH_SHORT).show()
             }
         }
+        banner.vibrate = true
     }
 
     private fun bindViews() {

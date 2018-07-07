@@ -46,9 +46,12 @@ class NotificationBanner : MaterialCardView {
     }
 
     private fun bindViews(context: Context) {
+        if (isInEditMode)
+            return
+
         translate.interpolator = AccelerateDecelerateInterpolator()
         fade.interpolator = OvershootInterpolator()
-        val view = LayoutInflater.from(context).inflate(R.layout.view, this)
+        val view = LayoutInflater.from(context).inflate(R.layout.banner, this)
         avatar = view.findViewById(R.id.banner_profile)
         name = view.findViewById(R.id.banner_name)
         text = view.findViewById(R.id.banner_text)
