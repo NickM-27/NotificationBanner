@@ -45,6 +45,11 @@ class NotificationBanner : MaterialCardView {
         bindViews(context)
     }
 
+    /**
+     * Convenience method to bind inflated [View] to [MaterialCardView]
+     *
+     * @param context to inflate [View]
+     */
     private fun bindViews(context: Context) {
         val view = LayoutInflater.from(context).inflate(R.layout.banner, this)
 
@@ -74,9 +79,12 @@ class NotificationBanner : MaterialCardView {
         }))
     }
 
+    /**
+     * Internal method to apply behavior to [NotificationBanner]
+     */
     private fun show() {
         if (vibrate)
-        context.notifyVibrate()
+            context.notifyVibrate()
 
         handler.removeCallbacks(hideAction)
         visibility = View.VISIBLE
@@ -85,6 +93,9 @@ class NotificationBanner : MaterialCardView {
         handler.postDelayed(hideAction, 7000)
     }
 
+    /**
+     * [Runnable] action that hides banner with animation if supported
+     */
     private val hideAction = Runnable {
         visibility = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             animatorSet.reverse()
@@ -93,6 +104,9 @@ class NotificationBanner : MaterialCardView {
             View.INVISIBLE
     }
 
+    /**
+     * Show [BannerInfo] that was previously supplied via info
+     */
     fun notifyMessage() {
         if (!::info.isInitialized)
             throw IllegalStateException("BannerInfo has not been set")
@@ -103,6 +117,11 @@ class NotificationBanner : MaterialCardView {
         show()
     }
 
+    /**
+     * Immediately bind and show [BannerInfo]
+     *
+     * @param info to bind to banner
+     */
     fun notifyMessage(info: BannerInfo) {
         this.info = info
         avatar.setImageBitmap(info.avatar)
@@ -113,7 +132,14 @@ class NotificationBanner : MaterialCardView {
 
     companion object {
 
-        class BannerGestureListener(context: Context, view: View, clickListener: ClickListener) : View.OnTouchListener {
+        /**
+         * Internal [GestureDetector] to listen for common actions to banner
+         *
+         * @param context to create [GestureDetector]
+         * @param view to pass to listeners
+         * @param clickListener for simple callbacks
+         */
+        private class BannerGestureListener(context: Context, view: View, clickListener: ClickListener) : View.OnTouchListener {
 
             private val gestureDetector: GestureDetector
 
