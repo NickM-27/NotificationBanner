@@ -1,5 +1,5 @@
 # NotificationBanner
-An easy to use library to show a notification banner.
+An easy to use library to show a notification banner. This is useful for cases in apps where the user is already in your app so using a system notifications could be confusing. Instead use this library to show a notification banner which is themed to your UI and can have custom behavior based on what part of the app they are in.
 
 <img src="/sample1.png" width="32%"> <img src="/sample2.png" width="32%">
 
