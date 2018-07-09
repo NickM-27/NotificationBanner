@@ -1,7 +1,7 @@
 # NotificationBanner
 An easy to use library to show a notification banner.
 
-<img src="/sample_layout.png" width="32%"> <img src="/sample_banner.png" width="32%">
+<img src="/sample1.png" width="32%"> <img src="/sample2.png" width="32%">
 
 # Features
 
